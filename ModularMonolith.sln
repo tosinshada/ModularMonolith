@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularMonolith.Host", "ModularMonolith.Host\ModularMonolith.Host.csproj", "{3D0BFF5B-FB18-4A5D-A6F5-21E589FD0EA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{4CD5DFE0-0C25-4977-A281-17DC7DB546DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Users", "..\Modules.Users\Modules.Users.csproj", "{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Common", "..\Modules.Common\Modules.Common.csproj", "{347956C6-470A-4E5C-B7E8-BC0943265DC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D0BFF5B-FB18-4A5D-A6F5-21E589FD0EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0BFF5B-FB18-4A5D-A6F5-21E589FD0EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0BFF5B-FB18-4A5D-A6F5-21E589FD0EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0BFF5B-FB18-4A5D-A6F5-21E589FD0EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347956C6-470A-4E5C-B7E8-BC0943265DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347956C6-470A-4E5C-B7E8-BC0943265DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347956C6-470A-4E5C-B7E8-BC0943265DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347956C6-470A-4E5C-B7E8-BC0943265DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A1C8F27-BC8A-4498-8BAD-C8B22A4C7BD6} = {4CD5DFE0-0C25-4977-A281-17DC7DB546DC}
+		{347956C6-470A-4E5C-B7E8-BC0943265DC2} = {4CD5DFE0-0C25-4977-A281-17DC7DB546DC}
+	EndGlobalSection
+EndGlobal

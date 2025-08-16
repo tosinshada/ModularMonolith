@@ -18,4 +18,8 @@
         <ProjectReference Include="..\Modules.Common\Modules.Common.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Database\Migrations\" />
+    </ItemGroup>
+
 </Project>

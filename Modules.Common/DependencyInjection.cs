@@ -41,7 +41,7 @@ public static class DependencyInjection
     {
         services
             .AddOpenTelemetry()
-            .ConfigureResource(resource => resource.AddService("ShippingModularMonolith"))
+            .ConfigureResource(resource => resource.AddService("ModularMonolith"))
             .WithTracing(tracing =>
             {
                 tracing
@@ -56,7 +56,8 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddJwtAuthentication(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddOptions<AuthConfiguration>()
             .Bind(configuration.GetSection(nameof(AuthConfiguration)));
@@ -69,9 +70,9 @@ public static class DependencyInjection
             ValidateIssuerSigningKey = true,
             ValidIssuer = configuration["AuthConfiguration:Issuer"],
             ValidAudience = configuration["AuthConfiguration:Audience"],
-#pragma warning disable S6781
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthConfiguration:Key"]  ?? throw new InvalidOperationException("JWT key is not configured")))
-#pragma warning restore S6781
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthConfiguration:Key"]
+                                                                               ?? throw new InvalidOperationException(
+                                                                                   "JWT key is not configured")))
         };
 
         services.AddSingleton(tokenValidationParameters);
@@ -82,10 +83,7 @@ public static class DependencyInjection
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = tokenValidationParameters;
-            });
+            .AddJwtBearer(options => { options.TokenValidationParameters = tokenValidationParameters; });
 
         return services;
     }
@@ -97,13 +95,13 @@ public static class DependencyInjection
 
         return services;
     }
-    
+
     public static IServiceCollection AddCoreWebApiInfrastructure(this IServiceCollection services)
     {
         services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen();
-        
+
         services
             .AddExceptionHandler<GlobalExceptionHandler>()
             .AddProblemDetails();
@@ -112,13 +110,13 @@ public static class DependencyInjection
         {
             opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
-        
+
         return services;
     }
-    
+
     public static void AddCoreHostLogging(this WebApplicationBuilder builder)
     {
-        builder.Host.UseSerilog((context, loggerConfig) => 
+        builder.Host.UseSerilog((context, loggerConfig) =>
             loggerConfig.ReadFrom.Configuration(context.Configuration));
     }
 }

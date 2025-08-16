@@ -9,6 +9,7 @@ using Modules.Users.Authorization;
 using Modules.Users.Database;
 using Modules.Users.Domain.Authentication;
 using Modules.Users.Domain.Users;
+using Modules.Users.Features.Users;
 using Modules.Users.Middlewares;
 using Modules.Users.Policies;
 
@@ -22,6 +23,7 @@ public static class DependencyInjection
 		services.AddDatabase(configuration);
 		
 		services.AddScoped<IClientAuthorizationService, ClientAuthorizationService>();
+		services.AddScoped<IUserService, UserService>();
 		
 		services.AddSingleton<IPolicyFactory, UsersPolicyFactory>();
 

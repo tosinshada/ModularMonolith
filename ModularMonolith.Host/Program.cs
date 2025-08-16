@@ -11,21 +11,10 @@ builder.AddCoreHostLogging();
 
 builder.Services.AddCoreWebApiInfrastructure();
 
-// builder.Services.AddCoreInfrastructure(builder.Configuration,
-// [
-//     ShipmentsModuleRegistration.ActivityModuleName,
-//     CarriersModuleRegistration.ActivityModuleName,
-//     StocksModuleRegistration.ActivityModuleName
-// ]);
+builder.Services.AddCoreInfrastructure(builder.Configuration, []);
 
 builder.Services
     .AddUsersModule(builder.Configuration);
-
-// Seed entities in DEVELOPMENT mode
-// if (builder.Environment.IsDevelopment())
-// {
-//     builder.Services.AddScoped<SeedService>();
-// }
 
 var app = builder.Build();
 

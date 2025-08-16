@@ -11,15 +11,8 @@ namespace Modules.Users.Features.Users;
 /// Controller for user-related operations
 /// </summary>
 [Route("api/users")]
-public class UsersController : BaseApiController
+public class UsersController(IUserService userService) : BaseApiController
 {
-    private readonly IUserService _userService;
-
-    public UsersController(IUserService userService)
-    {
-        _userService = userService;
-    }
-
     /// <summary>
     /// Register a new user
     /// </summary>
@@ -35,7 +28,7 @@ public class UsersController : BaseApiController
             return ValidationProblem(new ValidationProblemDetails(validationResult.ToDictionary()));
         }
 
-        var response = await _userService.RegisterUserAsync(request, cancellationToken);
+        var response = await userService.RegisterUserAsync(request, cancellationToken);
         return HandleCreateResult(response, nameof(GetUserById), new { userId = response.Value?.Id });
     }
 
@@ -54,7 +47,7 @@ public class UsersController : BaseApiController
             return ValidationProblem(new ValidationProblemDetails(validationResult.ToDictionary()));
         }
 
-        var response = await _userService.LoginUserAsync(request, cancellationToken);
+        var response = await userService.LoginUserAsync(request, cancellationToken);
         return HandleResult(response);
     }
 
@@ -73,7 +66,7 @@ public class UsersController : BaseApiController
             return ValidationProblem(new ValidationProblemDetails(validationResult.ToDictionary()));
         }
 
-        var response = await _userService.RefreshTokenAsync(request, cancellationToken);
+        var response = await userService.RefreshTokenAsync(request, cancellationToken);
         return HandleResult(response);
     }
 
@@ -86,7 +79,7 @@ public class UsersController : BaseApiController
         string userId,
         CancellationToken cancellationToken)
     {
-        var response = await _userService.GetUserByIdAsync(userId, cancellationToken);
+        var response = await userService.GetUserByIdAsync(userId, cancellationToken);
         return HandleResult(response);
     }
 
@@ -107,7 +100,7 @@ public class UsersController : BaseApiController
             return ValidationProblem(new ValidationProblemDetails(validationResult.ToDictionary()));
         }
 
-        var response = await _userService.UpdateUserAsync(userId, request, cancellationToken);
+        var response = await userService.UpdateUserAsync(userId, request, cancellationToken);
         return HandleResult(response);
     }
 
@@ -120,7 +113,7 @@ public class UsersController : BaseApiController
         string userId,
         CancellationToken cancellationToken)
     {
-        var response = await _userService.DeleteUserAsync(userId, cancellationToken);
+        var response = await userService.DeleteUserAsync(userId, cancellationToken);
         return HandleResult(response);
     }
 
@@ -141,7 +134,7 @@ public class UsersController : BaseApiController
             return ValidationProblem(new ValidationProblemDetails(validationResult.ToDictionary()));
         }
 
-        var response = await _userService.UpdateUserRoleAsync(userId, request, cancellationToken);
+        var response = await userService.UpdateUserRoleAsync(userId, request, cancellationToken);
         return HandleResult(response);
     }
 }

@@ -255,6 +255,7 @@ public class ClientAuthorizationService(
             refreshToken.UpdatedAtUtc = DateTime.UtcNow;
 
             // Add to memory cache for the middleware to check
+            // [Todo] Set it to expire in line with the token expiration
             memoryCache.Set(refreshToken.JwtId, RevocatedTokenType.RoleChanged);
         }
 

@@ -31,12 +31,9 @@ public abstract class BaseApiController : ControllerBase
     /// </summary>
     protected IActionResult HandleCreateResult<T>(Result<T> result, string actionName, object routeValues)
     {
-        if (result.IsError)
-        {
-            return ConvertToProblem(result.Errors);
-        }
-
-        return CreatedAtAction(actionName, routeValues, result.Value);
+        return result.IsError 
+            ? ConvertToProblem(result.Errors) 
+            : CreatedAtAction(actionName, routeValues, result.Value);
     }
 
     /// <summary>
